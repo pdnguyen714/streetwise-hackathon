@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  display: flex;
 }
 
 .App-logo {
@@ -40,4 +40,19 @@
 #map {
   height: 400px;
   width: 100%;
+}
+
+.map {
+  display: flex;
+  min-height: 100%;
+  position: relative;
+}
+
+.sideBar {
+  display: flex;
+  width: 30%;
+  border: solid;
+  flex-direction: column;
+  min-height: 100%;
+  position: relative;
 }
