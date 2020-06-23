@@ -1,5 +1,6 @@
 .App {
   display: flex;
+  height: 100vh;
 }
 
 .App-logo {
@@ -50,9 +51,19 @@
 
 .sideBar {
   display: flex;
-  width: 30%;
+  width: 37.5%;
   border: solid;
   flex-direction: column;
   min-height: 100%;
   position: relative;
+  background-color: #C4C4C4;
+}
+
+.pinListItem {
+  border-top: solid;
+  border-bottom: solid;
+}
+
+.nav {
+  height: 120px;
 }

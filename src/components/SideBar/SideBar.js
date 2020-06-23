@@ -6,7 +6,6 @@ export const SideBar = () => {
 
     return (
         <div className="sideBar">
-            <h1>Side Bar</h1>
             <Nav />
             <PinList />
         </div>
