@@ -39,61 +39,30 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <h1>My Google Map</h1>
-    <input class="form-control" id="search" type="text" placeholder="Search..." />
 
-    <div id="map"></div>
+    <!-- HTML Render of Google Maps -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h1 class="display-4">My Map</h1>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-xs ml-3">
+          <input class="form-control" id="search" type="text" placeholder="Search..." />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Google Maps -->
+
     <script>
-      // function initMap() {
-      //   var options = {
-      //     zoom: 8,
-      //     center: {lat:42.3601, lng:-71.0589}
-      //   }
-
-      //   var map = new google.maps.Map(document.getElementById('map'), options);
-
-      //   google.maps.event.addListener(map, 'click',
-      //     function(event){
-      //       addMarker({coords:event.latLng});
-      //   });
-
-      //   var markers = [
-      //     {
-      //       coords:{lat:42.3601, lng:-71.0589},
-      //       iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/parking_lot_maps.png',
-      //       content:'<h1>Boston, MA</h1>'
-      //     },
-      //     {
-      //       coords:{lat:33.7175, lng:-117.8311}
-      //     }
-      //   ];
-
-      //   for(var i = 0; i < markers.length; i++) {
-      //     addMarker(markers[i]);
-      //   }
-
-      //   function addMarker(props) {
-      //     var marker = new google.maps.Marker({
-      //       position: props.coords,
-      //       map: map
-      //     });
-          
-      //     if(props.iconImage){
-
-      //       marker.setIcon(props.iconImage);
-      //     }
-
-      //     if(props.content){
-      //         var infoWindow = new google.maps.InfoWindow({
-      //         content: props.content
-      //       });
-
-      //       marker.addListener('click', function() {
-      //         infoWindow.open(map, marker);
-      //       });
-      //     }
-      //   }
-      // }
 
       let map;
 
@@ -105,23 +74,14 @@
 
         map = new google.maps.Map(document.getElementById('map'), options);
 
-        // Make markers
-        
+        // Marker functionality
+
         google.maps.event.addListener(map, 'click',
           function(event){
             addMarker({coords:event.latLng});
         });
 
-        var markers = [
-          {
-            coords:{lat:42.3601, lng:-71.0589},
-            iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/parking_lot_maps.png',
-            content:'<h1>Boston, MA</h1>'
-          },
-          {
-            coords:{lat:33.7175, lng:-117.8311}
-          }
-        ];
+        var markers = [];
 
         for(var i = 0; i < markers.length; i++) {
           addMarker(markers[i]);
@@ -148,6 +108,8 @@
             });
           }
         }
+
+        // Search functionality
 
         var input = document.getElementById('search');
         var searchBox = new google.maps.places.SearchBox(input);
