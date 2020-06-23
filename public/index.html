@@ -40,16 +40,73 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <h1>My Google Map</h1>
+    <input class="form-control" id="search" type="text" placeholder="Search..." />
+
     <div id="map"></div>
     <script>
-      function initMap() {
+      // function initMap() {
+      //   var options = {
+      //     zoom: 8,
+      //     center: {lat:42.3601, lng:-71.0589}
+      //   }
+
+      //   var map = new google.maps.Map(document.getElementById('map'), options);
+
+      //   google.maps.event.addListener(map, 'click',
+      //     function(event){
+      //       addMarker({coords:event.latLng});
+      //   });
+
+      //   var markers = [
+      //     {
+      //       coords:{lat:42.3601, lng:-71.0589},
+      //       iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/parking_lot_maps.png',
+      //       content:'<h1>Boston, MA</h1>'
+      //     },
+      //     {
+      //       coords:{lat:33.7175, lng:-117.8311}
+      //     }
+      //   ];
+
+      //   for(var i = 0; i < markers.length; i++) {
+      //     addMarker(markers[i]);
+      //   }
+
+      //   function addMarker(props) {
+      //     var marker = new google.maps.Marker({
+      //       position: props.coords,
+      //       map: map
+      //     });
+          
+      //     if(props.iconImage){
+
+      //       marker.setIcon(props.iconImage);
+      //     }
+
+      //     if(props.content){
+      //         var infoWindow = new google.maps.InfoWindow({
+      //         content: props.content
+      //       });
+
+      //       marker.addListener('click', function() {
+      //         infoWindow.open(map, marker);
+      //       });
+      //     }
+      //   }
+      // }
+
+      let map;
+
+       createMap = () => {
         var options = {
-          zoom: 8,
-          center: {lat:42.3601, lng:-71.0589}
-        }
+          center: { lat: 33.7175, lng: -117.8311 },
+          zoom: 8
+        };
 
-        var map = new google.maps.Map(document.getElementById('map'), options);
+        map = new google.maps.Map(document.getElementById('map'), options);
 
+        // Make markers
+        
         google.maps.event.addListener(map, 'click',
           function(event){
             addMarker({coords:event.latLng});
@@ -91,10 +148,47 @@
             });
           }
         }
-      }
+
+        var input = document.getElementById('search');
+        var searchBox = new google.maps.places.SearchBox(input);
+
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        
+        searchBox.addListener('places_changed', function () {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0)
+            return;
+
+          markers.forEach(function (m) { m.setMap(null); });
+          markers = [];
+
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(p) {
+            if (!p.geometry)
+              return;
+
+            markers.push(new google.maps.Marker({
+              map: map,
+              title: p.name,
+              position: p.geometry.location
+            }));
+
+            if (p.geometry.viewport)
+              bounds.union(p.geometry.viewport);
+            else
+              bounds.extend(p.geometry.location);
+          });
+          
+          map.fitBounds(bounds);
+        });
+      } 
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkqzhknCSc2mV6evpPKPtLzNZVs-OEs4M&callback=initMap">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkqzhknCSc2mV6evpPKPtLzNZVs-OEs4M&callback=createMap&libraries=places" async defer>
     </script>
   </body>
 </html>
