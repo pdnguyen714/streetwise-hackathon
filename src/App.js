@@ -1,109 +1,199 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './App.css';
-import { Map } from './components/Map/Map.js'
-import { SideBar } from './components/SideBar/SideBar';
+// import React, { useEffect, useRef, useState } from 'react';
+// import './App.css';
+// import { Map } from './components/Map/Map.js'
+// import { SideBar } from './components/SideBar/SideBar';
 
+import React from "react";
+import {
+  GoogleMap,
+  useLoadScript,
+  Marker,
+  InfoWindow,
+} from "@react-google-maps/api";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+} from "@reach/combobox";
+import { formatRelative } from "date-fns";
 
-function App() {
-  const mapRef = useRef(null);
-  let [map, setMap] = useState()
+import "@reach/combobox/styles.css";
+// import mapStyles from "./mapStyles";
 
-  let [markers, setMarkers] = useState()
+const libraries = ["places"];
+const mapContainerStyle = {
+  height: "100vh",
+  width: "100vw",
+};
+const options = {
+  // styles: mapStyles,
+  disableDefaultUI: true,
+  zoomControl: true,
+};
+const center = {
+  lat: 43.6532,
+  lng: -79.3832,
+};
 
-  const createMap = () => {
-    var options = {
-      center: { lat: 33.7175, lng: -117.8311 },
-      zoom: 8
-    };
-    setMap(new window.google.maps.Map(mapRef.current, options));
-  }
+export default function App() {
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries,
+  });
+  const [markers, setMarkers] = React.useState([]);
+  const [selected, setSelected] = React.useState(null);
 
-  // const renderMarkers = () => {
+  const onMapClick = React.useCallback((e) => {
+    setMarkers((current) => [
+      ...current,
+      {
+        lat: e.latLng.lat(),
+        lng: e.latLng.lng(),
+        time: new Date(),
+      },
+    ]);
+  }, []);
 
-  //   window.google.maps.event.addListener(map, 'click',
-  //     function (event) {
-  //       addMarker({ coords: event.latLng });
-  //     });
+  const mapRef = React.useRef();
+  const onMapLoad = React.useCallback((map) => {
+    mapRef.current = map;
+  }, []);
 
-  //   for (var i = 0; i < markers.length; {
-  //     addMarker(markers[i]);
-  //   }
+  const panTo = React.useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(14);
+  }, []);
 
-
-
-  //   const addMarker = (props) => {
-  //       var marker = new window.google.maps.Marker({
-  //         position: props.coords,
-  //         map: map
-  //       });
-
-  //       if (props.iconImage) {
-
-  //         marker.setIcon(props.iconImage);
-  //       }
-
-  //       if (props.content) {
-  //         var infoWindow = new window.google.maps.InfoWindow({
-  //           content: props.content
-  //         });
-
-  //         marker.addListener('click', function () {
-  //           infoWindow.open(map, marker);
-  //         });
-  //       }
-  //     }
-
-    // Search functionality
-
-    // var input = document.getElementById('search');
-    // var searchBox = new google.maps.places.SearchBox(input);
-
-    // map.addListener('bounds_changed', function () {
-    //   searchBox.setBounds(map.getBounds());
-    // });
-
-    // var markers = [];
-
-    // searchBox.addListener('places_changed', function () {
-    //   var places = searchBox.getPlaces();
-
-    //   if (places.length == 0)
-    //     return;
-
-    //   markers.forEach(function (m) { m.setMap(null); });
-    //   markers = [];
-
-    //   var bounds = new google.maps.LatLngBounds();
-    //   places.forEach(function (p) {
-    //     if (!p.geometry)
-    //       return;
-
-    //     markers.push(new google.maps.Marker({
-    //       map: map,
-    //       title: p.name,
-    //       position: p.geometry.location
-    //     }));
-
-    //     if (p.geometry.viewport)
-    //       bounds.union(p.geometry.viewport);
-    //     else
-    //       bounds.extend(p.geometry.location);
-    //   });
-
-    //   map.fitBounds(bounds);
-    // });
-  // }
-
-  useEffect(() => {
-    createMap()
-  }, [])
+  if (loadError) return "Error";
+  if (!isLoaded) return "Loading...";
 
   return (
-    <div className="App">
-      <SideBar />
-      <Map mapRef={mapRef} />
+    <div>
+      <h1>
+        StreetWise{" "}
+        {/* <span role="img" aria-label="tent">
+          ⛺️
+        </span> */}
+      </h1>
+
+      <Locate panTo={panTo} />
+      <Search panTo={panTo} />
+
+      <GoogleMap
+        id="map"
+        mapContainerStyle={mapContainerStyle}
+        zoom={8}
+        center={center}
+        options={options}
+        onClick={onMapClick}
+        onLoad={onMapLoad}
+      >
+        {markers.map((marker) => (
+          <Marker
+            key={`${marker.lat}-${marker.lng}`}
+            position={{ lat: marker.lat, lng: marker.lng }}
+            onClick={() => {
+              setSelected(marker);
+            }}
+          />
+        ))}
+
+        {selected ? (
+          <InfoWindow
+            position={{ lat: selected.lat, lng: selected.lng }}
+            onCloseClick={() => {
+              setSelected(null);
+            }}
+          >
+            <div>
+              <h2>
+                Alert
+              </h2>
+              <p>Event {formatRelative(selected.time, new Date())}</p>
+            </div>
+          </InfoWindow>
+        ) : null}
+      </GoogleMap>
     </div>
   );
 }
 
-export default App;
+function Locate({ panTo }) {
+  return (
+    <button
+      className="locate"
+      onClick={() => {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            panTo({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+          },
+          () => null
+        );
+      }}
+    >
+      <img src="/favicon.ico" alt="compass" />
+    </button>
+  );
+}
+
+function Search({ panTo }) {
+  const {
+    ready,
+    value,
+    suggestions: { status, data },
+    setValue,
+    clearSuggestions,
+  } = usePlacesAutocomplete({
+    requestOptions: {
+      location: { lat: () => 43.6532, lng: () => -79.3832 },
+      radius: 100 * 1000,
+    },
+  });
+
+  const handleInput = (e) => {
+    setValue(e.target.value);
+  };
+
+  const handleSelect = async (address) => {
+    setValue(address, false);
+    clearSuggestions();
+
+    try {
+      const results = await getGeocode({ address });
+      const { lat, lng } = await getLatLng(results[0]);
+      panTo({ lat, lng });
+    } catch (error) {
+      console.log("😱 Error: ", error);
+    }
+  };
+
+  return (
+    <div className="search">
+      <Combobox onSelect={handleSelect}>
+        <ComboboxInput
+          value={value}
+          onChange={handleInput}
+          disabled={!ready}
+          placeholder="Search your location"
+        />
+        <ComboboxPopover>
+          <ComboboxList>
+            {status === "OK" &&
+              data.map(({ id, description }) => (
+                <ComboboxOption key={id} value={description} />
+              ))}
+          </ComboboxList>
+        </ComboboxPopover>
+      </Combobox>
+    </div>
+  );
+}
