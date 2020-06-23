@@ -47,11 +47,12 @@
   display: flex;
   min-height: 100%;
   position: relative;
+  min-width: 62.5%;
 }
 
 .sideBar {
   display: flex;
-  width: 37.5%;
+  min-width: 37.5%;
   border: solid;
   flex-direction: column;
   min-height: 100%;
