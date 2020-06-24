@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
+import './NewPinForm.css'
 
 export const NewPinForm = () => {
 
@@ -11,7 +12,7 @@ export const NewPinForm = () => {
         const headers = new Headers()
         headers.append('Content-Type', 'application/json')
         const pinInfo = {
-            descriptions: description,
+            description: description,
             type: type,
         }
         fetch(process.env.REACT_APP_API_URL, {

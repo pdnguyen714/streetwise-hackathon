@@ -76,7 +76,7 @@ export const Map = () => {
   return (
     <div className="map">
       <h1>
-        StreetWise{" "}
+        {" "}
         {/* <span role="img" aria-label="tent">
           ⛺️
         </span> */}

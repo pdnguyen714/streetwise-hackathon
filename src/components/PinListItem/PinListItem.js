@@ -1,10 +1,19 @@
 import React from 'react';
+import './PinListItem.css';
 
-export const PinListItem = () => {
+export const PinListItem = (props) => {
 
     return (
         <div className="pinListItem">
-            <h2>Pin List Item</h2>
+            <tr>
+                <td>
+                    <div className={`circle ${props.pin.type}`}></div>
+                    {props.pin.description}
+                </td>
+
+
+            </tr>
         </div>
     )
 }
+
