@@ -40,3 +40,8 @@
     color: #BBBBBB;
     width: 512px; 
   }
+
+  .highlighted {
+      border: solid white;
+      background-color: black;
+  }
