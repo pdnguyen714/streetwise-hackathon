@@ -19,7 +19,7 @@ export const PinList = (props) => {
     return (
         <div className="pinList">
             {props.pins.length && props.pins.map(pin =>
-                <PinListItem pin={pin} hightlightedPinId={props.highlightedPinId} setHighlightedPinId={props.setHighlightedPinId}/>
+                <PinListItem pin={pin} highlightedPinId={props.highlightedPinId} setHighlightedPinId={props.setHighlightedPinId}/>
             )}
 
         </div>

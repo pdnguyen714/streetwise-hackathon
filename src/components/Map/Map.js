@@ -61,6 +61,7 @@ export const Map = (props) => {
       const lat = Number(pin.latitude)
       const lng = Number(pin.longitude)
       return {
+        id: pin.id,
         lat: isNaN(lat) ? 0 : lat,
         lng: isNaN(lat) ? 0 : lng
       }
@@ -97,6 +98,10 @@ export const Map = (props) => {
             onClick={() => {
               setSelected(marker);
             }}
+            onMouseOver={()=>{
+              props.setHighlightedPinId(marker.id)
+            }}
+            opacity={marker.id === props.highlightedPinId ? 1 : .6}
           />
         ))}
 
