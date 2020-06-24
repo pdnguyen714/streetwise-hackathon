@@ -53,19 +53,16 @@
 .sideBar {
   display: flex;
   min-width: 37.5%;
-  border: solid;
   flex-direction: column;
   min-height: 100%;
   position: relative;
-  background-color: #C4C4C4;
+  background-color: #FBFBFB;
 }
 
-.pinListItem {
-  border-top: solid;
-  border-bottom: solid;
-}
 
 .nav {
+  display: flex;
+  align-items: center;
   height: 120px;
 }
 
@@ -76,3 +73,4 @@
   font-size: 36px;
   line-height: 42px;
 }
+
