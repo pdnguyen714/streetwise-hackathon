@@ -1,8 +1,3 @@
-// import React, { useEffect, useRef, useState } from 'react';
-// import './App.css';
-// import { Map } from './components/Map/Map.js'
-// import { SideBar } from './components/SideBar/SideBar';
-
 import React from "react";
 import {
   GoogleMap,
@@ -24,21 +19,16 @@ import {
 import { formatRelative } from "date-fns";
 
 import "@reach/combobox/styles.css";
-// import mapStyles from "./mapStyles";
 
 const libraries = ["places"];
 const mapContainerStyle = {
   height: "100vh",
   width: "100vw",
 };
-const options = {
-  // styles: mapStyles,
-  disableDefaultUI: true,
-  zoomControl: true,
-};
+
 const center = {
-  lat: 43.6532,
-  lng: -79.3832,
+  lat: 34.0522,
+  lng: -118.2437,
 };
 
 export const Map = () => {
@@ -75,13 +65,6 @@ export const Map = () => {
 
   return (
     <div className="map">
-      <h1>
-        {" "}
-        {/* <span role="img" aria-label="tent">
-          ⛺️
-        </span> */}
-      </h1>
-
       <Locate panTo={panTo} />
       <Search panTo={panTo} />
 
@@ -90,7 +73,6 @@ export const Map = () => {
         mapContainerStyle={mapContainerStyle}
         zoom={8}
         center={center}
-        options={options}
         onClick={onMapClick}
         onLoad={onMapLoad}
       >
@@ -140,7 +122,7 @@ function Locate({ panTo }) {
         );
       }}
     >
-      <img src="/favicon.ico" alt="compass" />
+      <img src="/home-run.svg" alt="home" />
     </button>
   );
 }
