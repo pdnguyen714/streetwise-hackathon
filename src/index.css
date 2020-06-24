@@ -41,3 +41,9 @@ code {
   width: 30px;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 1250px) {
+  .search {
+    top: 4rem;
+  }
+}

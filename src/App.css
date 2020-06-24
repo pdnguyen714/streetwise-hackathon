@@ -59,7 +59,6 @@
   background-color: #FBFBFB;
 }
 
-
 .nav {
   display: flex;
   align-items: center;
@@ -74,3 +73,8 @@
   line-height: 42px;
 }
 
+@media only screen and (max-width: 800px) {
+  .home {
+    display: block;
+  }
+}
