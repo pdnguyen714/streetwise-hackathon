@@ -1,0 +1,17 @@
+.circle  {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+}
+
+.police {
+    background-color: #3498DB;
+}
+
+.protest {
+    background-color: #F62459;
+}
+
+.other {
+    background-color: #F9B42D;
+}

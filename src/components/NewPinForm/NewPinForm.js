@@ -1,5 +1,6 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
+import './NewPinForm.css'
 
 export const NewPinForm = () => {
 
@@ -10,18 +11,17 @@ export const NewPinForm = () => {
     const addNew = () => {
         const headers = new Headers()
         headers.append('Content-Type', 'application/json')
-        const auditionInfo = {
-            descriptions: description,
+        const pinInfo = {
+            description: description,
             type: type,
         }
-        fetch(process.env.REACT_APP_API_URL + "pins", {
+        fetch(process.env.REACT_APP_API_URL, {
             headers: headers,
             method: "POST",
-            body: JSON.stringify(auditionInfo)
+            body: JSON.stringify(pinInfo)
         })
             .then(response => response.json())
             .then(data => {
-                history.push('/')
             })
     }
 
@@ -42,13 +42,13 @@ export const NewPinForm = () => {
                         <option value='protest'>protest</option>
                         <option value='police'>police</option>
                         <option value='other'>other</option>
-                        <div className="submit">
-                            <Link to='/'><button>Cancel</button></Link>
-                            <button className='smallButton' onClick={addNew}>Post</button>
-                        </div>
                     </select>
+
                 </div>
             </form>
+            <div className="submit">
+                <button className='smallButton' onClick={addNew}>Post</button>
+            </div>
         </div>
     )
 }

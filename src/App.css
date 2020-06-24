@@ -1,4 +1,4 @@
-.App {
+.home {
   display: flex;
   height: 100vh;
 }
@@ -47,11 +47,12 @@
   display: flex;
   min-height: 100%;
   position: relative;
+  min-width: 62.5%;
 }
 
 .sideBar {
   display: flex;
-  width: 37.5%;
+  min-width: 37.5%;
   border: solid;
   flex-direction: column;
   min-height: 100%;
@@ -66,4 +67,12 @@
 
 .nav {
   height: 120px;
+}
+
+.logo {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 42px;
 }
