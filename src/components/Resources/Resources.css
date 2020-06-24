@@ -1,6 +1,6 @@
 a {
     text-decoration: none;
-    color: #040492;
+    color: #655555;
 }
 
 a:hover {
@@ -55,10 +55,9 @@ a:hover {
     padding: 0.5em 0;
 }
 
-/* .padding-top {
-    padding-top: 2em;
-}
-
-.padding-bottom {
-    padding-bottom: 2em;
-} */
+@media only screen and (max-width: 600px) {
+    .resources {
+        padding: 0.1em;
+        margin: 0.1em;
+    }
+  }
