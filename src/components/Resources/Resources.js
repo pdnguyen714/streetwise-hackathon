@@ -11,7 +11,7 @@ export const Resources = (props) => {
                 <div className="resource-row">
                     <div className="resource-content">
                         <h1 className="resource-header">Protest Information</h1>
-                        <p className="resource-p">Make sure you're prepared by brushing up on your rights before heading out into the streets.</p>
+                        <p className="resource-p">Make sure you're prepared by brushing up<br /> on your rights before heading out into the streets.</p>
                         <div className="resource-links">
                             <div className="resource-link1">
                                 <a href="https://www.aclu.org/know-your-rights/protesters-rights/">Know your Rights</a><br />
