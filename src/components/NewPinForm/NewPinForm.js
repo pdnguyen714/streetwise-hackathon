@@ -24,6 +24,7 @@ export const NewPinForm = (props) => {
         })
             .then(response => response.json())
             .then(data => {
+                props.loadPins()
             })
     }
 

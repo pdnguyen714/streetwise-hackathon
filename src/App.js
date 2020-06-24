@@ -8,9 +8,10 @@ import Resources from './components/Resources/Resources'
 
 export const App = () => {
 
+    const [highlightedPinId, setHighlightedPinId] = useState()
     const [pins, setPins] = useState([])
 
-    useEffect(() => {
+    const loadPins = () => {
         const headers = new Headers()
         fetch(process.env.REACT_APP_API_URL, { headers: headers, method: "GET" })
             .then(response => response.json())
@@ -18,6 +19,10 @@ export const App = () => {
                 console.log(data)
                 setPins(data)
             })
+    }
+
+    useEffect(() => {
+        loadPins()
     }, [])
 
     return (
@@ -27,8 +32,8 @@ export const App = () => {
                 <Switch>
                     <Route path='/' exact>
                         <div className="home">
-                            <SideBar pins={pins} />
-                            <Map pins={pins}/>
+                            <SideBar pins={pins} hightlightedPinId={highlightedPinId} setHighlightedPinId={setHighlightedPinId} />
+                            <Map loadPins={loadPins} pins={pins} hightlightedPinId={highlightedPinId} setHighlightedPinId={setHighlightedPinId} />
                         </div>
                     </Route>
                     <Route path='/resources' exact>

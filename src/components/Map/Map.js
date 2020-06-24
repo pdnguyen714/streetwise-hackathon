@@ -108,7 +108,7 @@ export const Map = (props) => {
             }}
           >
             <div>
-              <NewPinForm lat={selected.lat} lng={selected.lng} />
+              <NewPinForm loadPins={props.loadPins} lat={selected.lat} lng={selected.lng} />
               <p>Event {formatRelative(selected.time, new Date())}</p>
             </div>
           </InfoWindow>
