@@ -26,12 +26,13 @@
 
 .description {
     padding-left: 23px;
-    padding-right: 27px;
+    padding-right: 37px;
     font-family: Oxygen;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     line-height: 23px;
+    padding-bottom: 20px;
 }
 
 .hr {
@@ -42,6 +43,6 @@
   }
 
   .highlighted {
-      border: solid white;
-      background-color: black;
+      border: solid #00B16A;
+      /* background-color: rgba(0, 177, 106, 1); */
   }

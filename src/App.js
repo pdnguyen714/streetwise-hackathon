@@ -32,8 +32,8 @@ export const App = () => {
                 <Switch>
                     <Route path='/' exact>
                         <div className="home">
-                            <SideBar pins={pins} hightlightedPinId={highlightedPinId} setHighlightedPinId={setHighlightedPinId} />
-                            <Map loadPins={loadPins} pins={pins} hightlightedPinId={highlightedPinId} setHighlightedPinId={setHighlightedPinId} />
+                            <SideBar pins={pins} highlightedPinId={highlightedPinId} setHighlightedPinId={setHighlightedPinId} />
+                            <Map loadPins={loadPins} pins={pins} highlightedPinId={highlightedPinId} setHighlightedPinId={setHighlightedPinId} />
                         </div>
                     </Route>
                     <Route path='/resources' exact>

@@ -11,7 +11,7 @@ export const SideBar = (props) => {
         <div className="sideBar">
             <Nav />
             <SearchBar />
-            <PinList pins={props.pins} hightlightedPinId={props.highlightedPinId} setHighlightedPinId={props.setHighlightedPinId}/>
+            <PinList pins={props.pins} highlightedPinId={props.highlightedPinId} setHighlightedPinId={props.setHighlightedPinId}/>
         </div>
     )
 }
