@@ -1,7 +1,16 @@
+a {
+    text-decoration: none;
+    color: #040492;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 .resources {
-    /* display: flex;
-    justify-content: center; */
-    margin: 5em 0;
+    padding: 2em;
+    margin: 2em;
+    box-shadow: 0px 1px 7px;
 }
 
 .resource-row {
@@ -9,6 +18,7 @@
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
+    margin: -4px 0;
 }
 
 .resource-row-reverse {
@@ -21,11 +31,8 @@
 .resource-content {
     padding: 0.5em;
     text-align: center;
-    width: 37.8%;
+    width: 42.5%;
 }
-/* .resource-img {
-    padding: 0 3em;
-} */
 
 .resource-header {
     text-align: center;
@@ -43,3 +50,15 @@
 .resource-link2 {
     padding: 0.5em 0;
 }
+
+.resource-link3 {
+    padding: 0.5em 0;
+}
+
+/* .padding-top {
+    padding-top: 2em;
+}
+
+.padding-bottom {
+    padding-bottom: 2em;
+} */
