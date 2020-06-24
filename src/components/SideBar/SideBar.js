@@ -12,7 +12,6 @@ export const SideBar = () => {
             <Nav />
             <SearchBar />
             <PinList />
-            <NewPinForm />
         </div>
     )
 }

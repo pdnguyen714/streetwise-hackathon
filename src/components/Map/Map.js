@@ -1,3 +1,4 @@
+import {NewPinForm} from '../NewPinForm/NewPinForm';
 import React from "react";
 import {
   GoogleMap,
@@ -94,9 +95,7 @@ export const Map = () => {
             }}
           >
             <div>
-              <h2>
-                Alert
-              </h2>
+              <NewPinForm lat={selected.lat} lng={selected.lng}/>
               <p>Event {formatRelative(selected.time, new Date())}</p>
             </div>
           </InfoWindow>
