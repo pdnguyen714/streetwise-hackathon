@@ -28,15 +28,15 @@ export const NewPinForm = () => {
     return (
         <div className='newPinForm'>
             <form>
-                <div>
+                <div  className='newPin'>
                     <label>Description</label>
-                    <input name='description' onChange={e => {
+                    <input className='descriptionInput' name='description' onChange={e => {
                         setDescription(e.target.value)
                     }} required pattern='.{2,}' />
                 </div>
-                <div>
+                <div  className='newPin'>
                     <label>Type</label>
-                    <select name='type' onChange={e => {
+                    <select name='type' onChange={e => { 
                         setType(e.target.value)
                     }}>
                         <option value='protest'>protest</option>
