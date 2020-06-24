@@ -1,0 +1,45 @@
+.resources {
+    /* display: flex;
+    justify-content: center; */
+    margin: 5em 0;
+}
+
+.resource-row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.resource-row-reverse {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row-reverse wrap;
+}
+
+.resource-content {
+    padding: 0.5em;
+    text-align: center;
+    width: 37.8%;
+}
+/* .resource-img {
+    padding: 0 3em;
+} */
+
+.resource-header {
+    text-align: center;
+}
+
+.resource-links {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.resource-link1 {
+    padding: 0.5em 0;
+}
+
+.resource-link2 {
+    padding: 0.5em 0;
+}
