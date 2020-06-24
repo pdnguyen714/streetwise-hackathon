@@ -1,4 +1,5 @@
-import React from "react";
+import { NewPinForm } from '../NewPinForm/NewPinForm';
+import React, { useEffect } from "react";
 import {
   GoogleMap,
   useLoadScript,
@@ -31,7 +32,7 @@ const center = {
   lng: -118.2437,
 };
 
-export const Map = () => {
+export const Map = (props) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -54,6 +55,19 @@ export const Map = () => {
   const onMapLoad = React.useCallback((map) => {
     mapRef.current = map;
   }, []);
+
+  useEffect(() => {
+    const mappedPins = props.pins.map(pin => {
+      const lat = Number(pin.latitude)
+      const lng = Number(pin.longitude)
+      return {
+        lat: isNaN(lat) ? 0 : lat,
+        lng: isNaN(lat) ? 0 : lng
+      }
+    })
+    console.log(mappedPins)
+    setMarkers(mappedPins)
+  }, [props.pins])
 
   const panTo = React.useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
@@ -94,9 +108,7 @@ export const Map = () => {
             }}
           >
             <div>
-              <h2>
-                Alert
-              </h2>
+              <NewPinForm lat={selected.lat} lng={selected.lng} />
               <p>Event {formatRelative(selected.time, new Date())}</p>
             </div>
           </InfoWindow>

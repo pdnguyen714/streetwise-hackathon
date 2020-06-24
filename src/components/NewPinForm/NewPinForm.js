@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import './NewPinForm.css'
 
-export const NewPinForm = () => {
+export const NewPinForm = (props) => {
 
     let history = useHistory();
     const [description, setDescription] = useState('')
@@ -14,6 +14,8 @@ export const NewPinForm = () => {
         const pinInfo = {
             description: description,
             type: type,
+            longitude: props.lng,
+            latitude: props.lat,
         }
         fetch(process.env.REACT_APP_API_URL, {
             headers: headers,
@@ -27,6 +29,7 @@ export const NewPinForm = () => {
 
     return (
         <div className='newPinForm'>
+            <div className="newPinTopBar">Post a pin</div>
             <form>
                 <div  className='newPin'>
                     <label>Description</label>
