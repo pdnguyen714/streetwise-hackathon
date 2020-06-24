@@ -26,7 +26,10 @@ label {
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
     border-radius: 6px;
-    width: 276px;
+    left: 8.18%;
+right: 8.18%;
+top: 39.5%;
+bottom: 50.55%;
 }
 
 .smallButton {
@@ -39,15 +42,41 @@ label {
     font-size: 14px;
     line-height: 18px;
     text-align: center;
-    color: #00B16A; 
+    background-color: #00B16A; 
+    width: 100px;
+    color: white;
+    height: 30px;
 }
 
 .smallButton:hover {
-    background-color: #00B16A;
-    color: white;
+    background-color: white;
+    color: #00B16A;
 }
 
 .submit {
     padding-top: 16px;
     padding-bottom: 16px;
+}
+
+.newPinTopBar {
+    background: #303030;
+    border-radius: 6px 6px 0px 0px;
+    height: 40px;
+    font-family: Oxygen;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    color: #FBFBFB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.newPinForm {
+    height: 360px;
+    padding: 0px;
+    margin: 0px;
+    background-color: #FBFBFB;
 }

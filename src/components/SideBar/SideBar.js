@@ -5,13 +5,13 @@ import { NewPinForm } from '../NewPinForm/NewPinForm';
 import './SideBar.css';
 import SearchBar from '../SearchBar/SearchBar';
 
-export const SideBar = () => {
+export const SideBar = (props) => {
 
     return (
         <div className="sideBar">
             <Nav />
             <SearchBar />
-            <PinList />
+            <PinList pins={props.pins}/>
         </div>
     )
 }

@@ -29,6 +29,7 @@ export const NewPinForm = (props) => {
 
     return (
         <div className='newPinForm'>
+            <div className="newPinTopBar">Post a pin</div>
             <form>
                 <div  className='newPin'>
                     <label>Description</label>
