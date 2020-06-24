@@ -1,0 +1,53 @@
+.newPinForm {
+    height: 362px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    padding-left: 27px;
+    padding-right: 27px;
+}
+
+.newPin {
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+}
+
+label {
+    font-family: Oxygen;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.descriptionInput {
+    background: #FFFFFF;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 276px;
+}
+
+.smallButton {
+    border: 2px solid #00B16A;
+    box-sizing: border-box;
+    border-radius: 6px;
+    font-family: Oxygen;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    color: #00B16A; 
+}
+
+.smallButton:hover {
+    background-color: #00B16A;
+    color: white;
+}
+
+.submit {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
