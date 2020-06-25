@@ -7,6 +7,14 @@ Welcome to StreetWise, where our goal is to make sure that each individual maint
 ![Screenshot1](https://i.imgur.com/Sm5nVcW.png)
 ![Screenshot2](https://i.imgur.com/lx65Faf.png)
 
+## Development Roles:
+* Esther Kim: UX/UI
+* Jahla Pope: UX/UI
+* Bennett Jobling: UX/UI
+* Jose Veliz: UX/UI
+* Briahna Yee: Engineering
+* Peter Nguyen: Engineering
+
 ## Technologies Used
 * HTML5, CSS3, JavaScript ES6, React.js, PostgreSQL
 
